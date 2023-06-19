@@ -9,20 +9,30 @@
 int main(void)
 {
 	char *command = NULL;
+	char **argv;
 
 	while (1)
 	{
-		write(1, "$ ", 2);
-
+		write(STDIN_FILENO, "$ ", 2);
 		command = readCommand();
 		if (command == NULL)
+	{
 			break;
+	}
+		argv = splitCommand(command, "\n");
 
-		if (execCommand(command) != 0)
-			perror("Error");
+		if (argv == NULL)
+		{
+			perror("Error splitting command");
+			free(command);
+		}
+		if (execCommand(argv != 0)
+		{
+		perror("Error");
+		}
 
+		free(argv);
 		free(command);
 	}
-
 	return (0);
 }
