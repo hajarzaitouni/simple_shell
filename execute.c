@@ -3,29 +3,25 @@
 /**
  * execCommand - loads up the calling program (command)
  *
- * @command: a pointer to string
+ * @argv: a pointer to string
  * Return: 0 (Success)
  */
 
-int execCommand(char *command)
+int execCommand(char **argv)
 {
-	char *argv[] = {NULL, NULL};
 	pid_t pid;
-	int status;
-
-	argv[0] = command;
 
 	pid = fork();
 
 	if (pid == -1)
 	{
-		perror("Error");
+		perror("Error forking");
 		return (-1);
 	}
 
 	if (pid == 0)
 	{
-		if (execve(command, argv, NULL) == -1)
+		if (execve(argv[0], argv, NULL) == -1)
 		{
 			perror("./hsh");
 			exit(1);
@@ -33,7 +29,10 @@ int execCommand(char *command)
 	}
 	else
 	{
-		wait(&status);
+	int status;
+
+	if (wait(&status) == -1)
+		perror("Error waiting");
 	}
 
 	return (0);
