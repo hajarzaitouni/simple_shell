@@ -4,7 +4,7 @@
 *_strlen - returns the length of a string
 *
 *@s: string input
-*Return: the length of tring
+*Return: the length of string
 */
 
 int _strlen(char *s)
@@ -37,10 +37,12 @@ char *_strdup(char *s)
 	str = malloc(sizeof(char) * (_strlen(s) + 1));
 	if (str == 0)
 		return (NULL);
+
 	while (s[i] != '\0')
 	{
 		str[i] = s[i];
 		i++;
 	}
+
 	return (str);
 }

@@ -10,6 +10,7 @@
 int execCommand(char **argv)
 {
 	pid_t pid;
+	int status;
 
 	pid = fork();
 
@@ -29,10 +30,8 @@ int execCommand(char **argv)
 	}
 	else
 	{
-	int status;
-
-	if (wait(&status) == -1)
-		perror("Error waiting");
+		if (wait(&status) == -1)
+			perror("Error waiting");
 	}
 
 	return (0);

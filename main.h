@@ -9,6 +9,12 @@
 #include <sys/wait.h>
 
 char *readCommand();
-int execCommand(char *command);
+int execCommand(char **argv);
+char **splitCommand(char *command, char *delimiter);
+
+/* String functions */
+
+int _strlen(char *s);
+char *_strdup(char *s);
 
 #endif

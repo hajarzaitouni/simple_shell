@@ -16,23 +16,25 @@ int main(void)
 		write(STDIN_FILENO, "$ ", 2);
 		command = readCommand();
 		if (command == NULL)
-	{
+		{
 			break;
-	}
-		argv = splitCommand(command, "\n");
+		}
+		argv = splitCommand(command, " \n");
 
 		if (argv == NULL)
 		{
 			perror("Error splitting command");
 			free(command);
 		}
-		if (execCommand(argv != 0)
+
+		if (execCommand(argv) != 0)
 		{
-		perror("Error");
+			perror("Error");
 		}
 
 		free(argv);
 		free(command);
 	}
+
 	return (0);
 }
