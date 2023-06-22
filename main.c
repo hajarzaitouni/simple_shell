@@ -25,6 +25,7 @@ int main(void)
 		{
 			perror("Error splitting command");
 			free(command);
+			continue;
 		}
 
 		if (execCommand(argv) != 0)

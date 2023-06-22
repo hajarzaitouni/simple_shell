@@ -7,16 +7,17 @@
 * @delimiter: a pointer to string (separator string)
 * Return: a pointer to array
 */
-char **splitCommand(char *command, char *delimiter)
+char **splitCommand(char *command, const char *delimiter)
 {
-	char *token = NULL;
+	char *cp_command, *token = NULL;
 	char **arr_tokens;
 	size_t i, j, count = 0;
 
-	char *cp_command = _strdup(command);
+	if (command == NULL)
+		return (NULL);
 
+	cp_command = _strdup(command);
 	token = strtok(cp_command, delimiter);
-
 	while (token)
 	{
 		count++;
@@ -24,8 +25,12 @@ char **splitCommand(char *command, char *delimiter)
 	}
 
 	arr_tokens = malloc(sizeof(char *) * (count + 1));
+
 	if (arr_tokens == NULL)
+	{
+		free(cp_command);
 		return (NULL);
+	}
 
 	token = strtok(command, delimiter);
 	i = 0;
@@ -39,13 +44,13 @@ char **splitCommand(char *command, char *delimiter)
 			for (j = 0; j < i; j++)
 				free(arr_tokens[j]);
 			free(arr_tokens);
+			free(cp_command);
 			return (NULL);
 		}
 		token = strtok(NULL, delimiter);
 		i++;
 	}
 	arr_tokens[i] = NULL;
-
 	free(cp_command);
 	return (arr_tokens);
 }

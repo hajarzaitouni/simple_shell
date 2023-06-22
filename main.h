@@ -7,14 +7,24 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <signal.h>
+#include <sys/stat.h>
+
+/* environ variable */
+extern char **environ;
+
 
 char *readCommand();
 int execCommand(char **argv);
-char **splitCommand(char *command, char *delimiter);
+char **splitCommand(char *command, const char *delimiter);
+char *get_path(char *command);
+char *_getenv(const char *name);
 
 /* String functions */
 
-int _strlen(char *s);
-char *_strdup(char *s);
+int _strlen(const char *s);
+char *_strdup(const char *s);
+char *_strcpy(char *dest, const char *src);
+char *_strcat(char *dest, const char *src);
 
 #endif
