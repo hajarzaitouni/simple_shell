@@ -9,26 +9,20 @@
 */
 char **splitCommand(char *command, const char *delimiter)
 {
-	char *cp_command, *token = NULL;
+	char *token = NULL;
 	char **arr_tokens;
 	size_t i, j, count = 0;
 
 	if (command == NULL)
 		return (NULL);
 
-	cp_command = _strdup(command);
-	token = strtok(cp_command, delimiter);
-	while (token)
-	{
-		count++;
-		token = strtok(NULL, delimiter);
-	}
+	count = count_tokens(command, delimiter);
 
 	arr_tokens = malloc(sizeof(char *) * (count + 1));
 
 	if (arr_tokens == NULL)
 	{
-		free(cp_command);
+		free(command);
 		return (NULL);
 	}
 
@@ -44,13 +38,42 @@ char **splitCommand(char *command, const char *delimiter)
 			for (j = 0; j < i; j++)
 				free(arr_tokens[j]);
 			free(arr_tokens);
-			free(cp_command);
+			free(command);
 			return (NULL);
 		}
 		token = strtok(NULL, delimiter);
 		i++;
 	}
 	arr_tokens[i] = NULL;
-	free(cp_command);
 	return (arr_tokens);
+}
+
+/**
+ * count_tokens - count the tokens in the input command
+ *
+ * @command: the input to parse
+ * @delimiter: separator string
+ * Return: the number of tokens
+ */
+
+size_t count_tokens(char *command, const char *delimiter)
+{
+	char *cp_command;
+	char *token;
+	size_t count = 0;
+
+	if (command == NULL)
+		return (0);
+	cp_command = _strdup(command);
+	if (cp_command == NULL)
+		return (0);
+	token = strtok(cp_command, delimiter);
+	while (token)
+	{
+		count++;
+		token = strtok(NULL, delimiter);
+	}
+
+	free(cp_command);
+	return (count);
 }

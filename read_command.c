@@ -20,7 +20,7 @@ char *readCommand()
 	}
 
 	if (command[read_chars - 1] == '\n')
-		command[read_chars -1] = '\0';
+		command[read_chars - 1] = '\0';
 
 	return (command);
 }

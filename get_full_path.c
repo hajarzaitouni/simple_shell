@@ -23,16 +23,12 @@ char *get_path(char *command)
 
 	while (token)
 	{
-		path_command = malloc(_strlen(token) + _strlen(command) + 2);
+		path_command = creat_path(token, command);
 		if (path_command == NULL)
 		{
 			free(cp_path);
 			return (NULL);
 		}
-
-		_strcpy(path_command, token);
-		_strcat(path_command, "/");
-		_strcat(path_command, command);
 
 		if (stat(path_command, &buff) == 0)
 		{
@@ -52,6 +48,29 @@ char *get_path(char *command)
 	return (NULL);
 }
 
+/**
+ * creat_path - build the full path command
+ *
+ * @dir: a pointer to the directory containing the command
+ * @command: a pointer to the executable command
+ * Return: a pointer to the resulting full path command
+ */
+
+char *creat_path(char *dir, char *command)
+{
+	char *full_cmd;
+
+	full_cmd = malloc(_strlen(dir) + _strlen(command) + 2);
+	if (full_cmd == NULL)
+		return (NULL);
+
+	_strcpy(full_cmd, dir);
+	_strcat(full_cmd, "/");
+	_strcat(full_cmd, command);
+
+	return (full_cmd);
+}
+
 
 /**
  * _getenv - get the environnement variable
@@ -66,6 +85,9 @@ char *_getenv(const char *name)
 	char **env = environ;
 	int i, n_len = 0, v_len = 0;
 
+	if (name == NULL)
+		return (NULL);
+
 	n_len = _strlen(name);
 	for (i = 0; env[i] != NULL; i++)
 	{
@@ -77,7 +99,9 @@ char *_getenv(const char *name)
 				v_len = _strlen(delim + 1);
 				value = malloc(sizeof(char) * (v_len + 1));
 				if (value == NULL)
+				{
 					return (NULL);
+				}
 				_strcpy(value, delim + 1);
 				return (value);
 			}

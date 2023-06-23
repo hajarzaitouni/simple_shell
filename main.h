@@ -17,7 +17,9 @@ extern char **environ;
 char *readCommand();
 int execCommand(char **argv);
 char **splitCommand(char *command, const char *delimiter);
+size_t count_tokens(char *command, const char *delimiter);
 char *get_path(char *command);
+char *creat_path(char *dir, char *command);
 char *_getenv(const char *name);
 
 /* String functions */
