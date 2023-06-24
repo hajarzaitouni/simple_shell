@@ -35,6 +35,10 @@ int main(void)
 			free(command);
 			break;
 		}
+		else if (_strcmp(argv[0],"env") == 0)
+		{
+			print_env();
+		}
 		if (execCommand(argv) != 0)
 		{
 			perror("Error");
