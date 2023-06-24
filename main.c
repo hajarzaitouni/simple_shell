@@ -19,6 +19,8 @@ int main(void)
 		{
 			break;
 		}
+		if (command[0] == '\0')
+			continue;
 		argv = splitCommand(command, " \n");
 
 		if (argv == NULL)
@@ -27,7 +29,12 @@ int main(void)
 			free(command);
 			continue;
 		}
-
+		if (_strcmp(argv[0], "exit") == 0)
+		{
+			free(argv);
+			free(command);
+			break;
+		}
 		if (execCommand(argv) != 0)
 		{
 			perror("Error");
