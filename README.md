@@ -38,7 +38,7 @@ In this project we are allowed to use the following functions listed down below 
 * wait4 (man 2 wait4)
 * write (man 2 write)
 
-##personnalised functions
+## Personnalised functions
 the following are the functions that were created in order to solve the project :
 * _strlen
 * _strdup
