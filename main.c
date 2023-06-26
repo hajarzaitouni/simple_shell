@@ -46,5 +46,5 @@ int main(void)
 		free(argv);
 		free(command);
 	}
-		return (0);
+	return (0);
 }
