@@ -3,6 +3,7 @@
 /**
 *print_env - print the current environement
 */
+
 void print_env(void)
 {
 	char **env = environ;
