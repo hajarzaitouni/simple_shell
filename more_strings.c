@@ -7,7 +7,6 @@
 *@s2: a pointer to the second string
 *Return: 0 if there is match, otherwise != 0
 */
-
 int _strcmp(const char *s1, const char *s2)
 {
 	int i = 0, comp = 0;
