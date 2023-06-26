@@ -5,7 +5,6 @@
  * Description: run a simple shell
  * Return: 0 (Success)
  */
-
 int main(void)
 {
 	char *command = NULL;
@@ -35,7 +34,7 @@ int main(void)
 			free(command);
 			break;
 		}
-		else if (_strcmp(argv[0],"env") == 0)
+		else if (_strcmp(argv[0], "env") == 0)
 		{
 			print_env();
 		}
@@ -47,6 +46,5 @@ int main(void)
 		free(argv);
 		free(command);
 	}
-
-	return (0);
+		return (0);
 }
