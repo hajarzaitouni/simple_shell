@@ -41,15 +41,15 @@ In this project we are allowed to use the following functions listed down below 
 ## Mandatory tasks 
 
 ### 0. Betty would be proud
-* Write a code that passes the Betty checks
+* the code should be written in compliance with the betty coding style guidelines
 
 ### 1. Simple shell 0.1
-* Write a UNIX command line interpreter.
+* Provide an implementtion of a UNIX command line interpreter
 ### 2. Simple shell 0.2
-* Handle command lines with arguments.
+* Enable the interpretation of command lines as well as their respective arguments
 ### 3. Simple shell 0.3
-* Handle the PATH.
+* Incorporate a solution to handle the management of PATH
 ### 4. Simple shell 0.4
-* Implement the exit built-in, that allows the user to exit the shell.
+* Allow the user to exit the Sheell using  an exit built in command 
 ### 5. Simple shell 1.0
 * Implement the env built-in.
