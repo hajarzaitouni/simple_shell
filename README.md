@@ -2,7 +2,7 @@
 
 ## Introduction 
 
-* This is a basic command-line interpreter or shell program developed as part of the ALX Software Engineering curriculum. The shell program allows users to enter commands and executes them, providing the corresponding output. 
+ This is a basic command-line interpreter or shell program developed as part of the ALX Software Engineering curriculum. The shell program allows users to enter commands and executes them, providing the corresponding output. 
 
 In this project we are allowed to use the following functions listed down below :
 * List of allowed functions and system calls
