@@ -46,7 +46,8 @@ the following are the functions that were created in order to solve the project 
 * _strcat
 * _strcmp
 * _strncmp
-
+* _realloc
+* _strchr
 ## Mandatory tasks 
 
 ### 0. Betty would be proud
