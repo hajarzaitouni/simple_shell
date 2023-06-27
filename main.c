@@ -14,12 +14,12 @@ int main(__attribute((unused)) int ac, char *av[])
 
 	while (1)
 	{
-		write(STDIN_FILENO, "$ ", 2);
+		if (isatty(STDIN_FILENO))
+			write(STDIN_FILENO, "$ ", 2);
 		command = readCommand();
 		if (command == NULL)
-		{
 			break;
-		}
+
 		if (command[0] == '\0')
 			continue;
 		argv = splitCommand(command, " \n");
