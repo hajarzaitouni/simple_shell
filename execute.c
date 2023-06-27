@@ -3,9 +3,9 @@
 /**
  * execCommand - loads up the calling program (command)
  *
- *@command: string input
- *@av: a pointer array of strings
- * @argv: a pointer to string
+  *@command: string input
+ * @av: a pointer to array of strings
+ * @argv: a pointer to array of strings
  * Return: 0 (Success)
  */
 
@@ -29,9 +29,7 @@ int execCommand(char **argv, char *command, char **av)
 	if (pid == 0)
 	{
 		if (_strncmp(*argv, "./", 2) != 0 && _strncmp(*argv, "/", 1) != 0)
-	{
-		path_cmd(argv);
-	}
+			get_path(argv);
 
 		if (execve(*argv, argv, env) == -1)
 		{
@@ -40,6 +38,7 @@ int execCommand(char **argv, char *command, char **av)
 			free(argv);
 			exit(EXIT_FAILURE);
 		}
+		return (EXIT_SUCCESS);
 	}
 	else
 		wait(&status);

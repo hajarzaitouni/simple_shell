@@ -3,50 +3,40 @@
 /**
  * get_path - get the executable command from $PATH
  *
- * @command: string to input
+ * @argv: double pointer (tokenized command)
  * Return: pointer to the full_command
  */
 
-char *get_path(char *command)
+int get_path(char **argv)
 {
-	char *path, *cp_path, *token;
+	char *path, *token;
 	char *path_command;
 	struct stat buff;
 
-	path = getenv("PATH");
+	path = _getenv("PATH");
 	if (path == NULL)
-		return (NULL);
-	cp_path = _strdup(path);
-	if (cp_path == NULL)
-		return (NULL);
-	token = strtok(cp_path, ":");
-
+		return (1);
+	token = strtok(path, ":");
 	while (token)
 	{
-		path_command = creat_path(token, command);
+		path_command = creat_path(token, *argv);
 		if (path_command == NULL)
-		{
-			free(cp_path);
-			return (NULL);
-		}
+			return (1);
 
 		if (stat(path_command, &buff) == 0)
 		{
-			free(cp_path);
-			return (path_command);
+			*argv = _strdup(path_command);
+			free(path_command);
+			free(path);
+			return (0);
 		}
 		free(path_command);
 		token = strtok(NULL, ":");
 	}
 
-	free(cp_path);
+	free(path);
 
-	if (stat(command, &buff) == 0)
-	{
-		return (command);
-	}
-
-	return (NULL);
+	return (1);
 }
 
 /**

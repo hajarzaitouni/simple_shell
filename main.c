@@ -36,11 +36,7 @@ int main(__attribute((unused)) int ac, char *av[])
 			free(command);
 			break;
 		}
-		else if (_strcmp(argv[0], "env") == 0)
-		{
-			print_env();
-		}
-		if (execCommand(argv) != 0)
+		if (execCommand(argv, command, av) != 0)
 			perror(av[0]);
 
 		free(argv);
