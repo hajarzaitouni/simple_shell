@@ -93,7 +93,7 @@ char *_getenv(const char *name)
 	{
 		if (_strncmp(name, env[i], n_len) == 0)
 		{
-			delim = strchr(env[i], '=');
+			delim = _strchr(env[i], '=');
 			if (delim)
 			{
 				v_len = _strlen(delim + 1);

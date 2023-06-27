@@ -95,3 +95,24 @@ char *_strcat(char *dest, const char *src)
 
 	return (dest);
 }
+
+/**
+* _strchr - searches for the first occurance of c in a string
+*
+*@str: a pointer to string
+*@c: the character to search for
+*Return: a pointer to the new string
+*/
+
+char *_strchr(const char *str, int c)
+{
+	int i = 0;
+
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return ((char *)str);
+		i++;
+	}
+	return (NULL);
+}
