@@ -44,7 +44,47 @@ char *readCommand()
 
 	return (buff);
 }
+/**
+*_realloc - reallocates a memory
+*@ptr: a pointer to the memory previously allocated
+*@old_size: size of the previous ptr
+*@new_size: new size of the new memory block
+*Return:a pointer to the newly allocated memory
+*/
 
+void *_realloc(void *ptr, size_t old_size, size_t new_size)
+{
+	char *new;
+	size_t i;
+
+	if (new_size == old_size)
+		return (ptr);
+	if (new_size == 0 && ptr)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	if (ptr == NULL)
+		return (malloc(new_size));
+
+	new = malloc(new_size);
+	if (new == NULL)
+		return (NULL);
+	if (new_size < old_size)
+	{
+		for (i = 0; i < new_size; i++)
+			*(new + i) = *((char *)ptr + i);
+	}
+
+	if (new_size > old_size)
+	{
+		for (i = 0; i < old_size; i++)
+			*(new + i) = *((char *)ptr + i);
+	}
+	free(ptr);
+
+	return (new);
+}
 /**
  * expand_buff - expand the buffer when it needs to
  *

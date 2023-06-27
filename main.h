@@ -18,6 +18,7 @@ extern char **environ;
 
 char *readCommand();
 char *expand_buff(char *buffer, size_t length);
+void *_realloc(void *ptr, size_t old_size, size_t new_size);
 int execCommand(char **argv);
 char **splitCommand(char *command, const char *delimiter);
 size_t count_tokens(char *command, const char *delimiter);
