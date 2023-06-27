@@ -15,7 +15,6 @@
 /* environ variable */
 extern char **environ;
 
-
 char *readCommand();
 char *expand_buff(char *buffer, size_t length);
 void *_realloc(void *ptr, size_t old_size, size_t new_size);
@@ -36,5 +35,9 @@ char *_strcat(char *dest, const char *src);
 int _strcmp(const char *s1, const char *s2);
 int _strncmp(const char  *s1, const char *s2, size_t n);
 char *_strchr(const char *str, int c);
+
+/* Helper functions*/
+
+void signal_handler(int signum);
 
 #endif

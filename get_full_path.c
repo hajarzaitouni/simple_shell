@@ -13,7 +13,7 @@ char *get_path(char *command)
 	char *path_command;
 	struct stat buff;
 
-	path = _getenv("PATH");
+	path = getenv("PATH");
 	if (path == NULL)
 		return (NULL);
 	cp_path = _strdup(path);
@@ -45,6 +45,7 @@ char *get_path(char *command)
 	{
 		return (command);
 	}
+
 	return (NULL);
 }
 
@@ -62,7 +63,9 @@ char *creat_path(char *dir, char *command)
 
 	full_cmd = malloc(_strlen(dir) + _strlen(command) + 2);
 	if (full_cmd == NULL)
+	{
 		return (NULL);
+	}
 
 	_strcpy(full_cmd, dir);
 	_strcat(full_cmd, "/");
@@ -78,7 +81,6 @@ char *creat_path(char *dir, char *command)
  * @name: a pointer to the name of variable
  * Return: a pointer to string that contains the value of variable
  */
-
 char *_getenv(const char *name)
 {
 	char *value, *delim;

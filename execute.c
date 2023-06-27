@@ -36,14 +36,23 @@ int execCommand(char **argv)
 		{
 			perror("Error execution");
 			free(full_cmd);
+			free(command);
 			exit(1);
 		}
 	}
 	else
-	{
-		if (wait(&status) == -1)
-			perror("Error waiting");
-	}
+		wait(&status);
 
 	return (0);
+}
+
+/**
+ * signal_handler - handle ctrl + C like in sh shell
+ * @signum: input integer
+ */
+
+void signal_handler(int signum)
+{
+	if (signum == SIGINT)
+		write(STDOUT_FILENO, "\n$ ", 3);
 }
