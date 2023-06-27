@@ -97,7 +97,7 @@ char *expand_buff(char *buffer, size_t length)
 {
 	char *newBuff;
 
-	newBuff = realloc(buffer, BUFF_SIZE + length);
+	newBuff = _realloc(buffer, BUFF_SIZE, BUFF_SIZE + length);
 	if (newBuff == NULL)
 	{
 		free(buffer);

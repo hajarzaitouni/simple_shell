@@ -3,9 +3,11 @@
 /**
  * main - Entry point
  * Description: run a simple shell
+ * @ac: number of arguments
+ * @av: a pointer to array
  * Return: 0 (Success)
  */
-int main(void)
+int main(__attribute((unused)) int ac, char *av[])
 {
 	char *command = NULL;
 	char **argv;
@@ -40,7 +42,7 @@ int main(void)
 		}
 		if (execCommand(argv) != 0)
 		{
-			perror("Error");
+			perror(av[0]);
 		}
 
 		free(argv);
