@@ -3,22 +3,19 @@
 /**
  * execCommand - loads up the calling program (command)
  *
+ *@command: string input
+ *@av: a pointer array of strings
  * @argv: a pointer to string
  * Return: 0 (Success)
  */
 
-int execCommand(char **argv)
+int execCommand(char **argv, char *command, char **av)
 {
 	pid_t pid;
-	char *command = NULL, *full_cmd = NULL;
 	int status;
+	char **env = environ;
 
 	if (argv == NULL)
-		return (-1);
-
-	command = argv[0];
-	full_cmd = get_path(command);
-	if (full_cmd == NULL)
 		return (-1);
 
 	pid = fork();
@@ -26,18 +23,22 @@ int execCommand(char **argv)
 	if (pid == -1)
 	{
 		perror("Error forking");
-		free(full_cmd);
 		return (-1);
 	}
 
 	if (pid == 0)
 	{
-		if (execve(full_cmd, argv, NULL) == -1)
+		if (_strncmp(*argv, "./", 2) != 0 && _strncmp(*argv, "/", 1) != 0)
+	{
+		path_cmd(argv);
+	}
+
+		if (execve(*argv, argv, env) == -1)
 		{
-			perror("Error execution");
-			free(full_cmd);
+			perror(av[0]);
 			free(command);
-			exit(1);
+			free(argv);
+			exit(EXIT_FAILURE);
 		}
 	}
 	else
@@ -45,12 +46,10 @@ int execCommand(char **argv)
 
 	return (0);
 }
-
 /**
- * signal_handler - handle ctrl + C like in sh shell
- * @signum: input integer
- */
-
+*signal_handler - handle ctrl + c like in sh shell
+*@signum: input integer
+*/
 void signal_handler(int signum)
 {
 	if (signum == SIGINT)
