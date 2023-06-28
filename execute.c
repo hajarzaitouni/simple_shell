@@ -28,7 +28,7 @@ int execCommand(char **argv, char *command, char **av)
 
 	if (pid == 0)
 	{
-		if (_strncmp(*argv, "./", 2) != 0 && _strncmp(*argv, "/", 1) != 0)
+		if ((_strncmp(*argv, "./", 2)) && (_strncmp(*argv, "/", 1)))
 			get_path(argv);
 
 		if (execve(*argv, argv, env) == -1)
