@@ -50,8 +50,10 @@ int get_path(char **argv)
 char *creat_path(char *dir, char *command)
 {
 	char *full_cmd;
+	size_t len1 = _strlen(dir);
+	size_t len2 = _strlen(command);
 
-	full_cmd = malloc(_strlen(dir) + _strlen(command) + 2);
+	full_cmd = malloc(len1 + len2 + 2);
 	if (full_cmd == NULL)
 	{
 		return (NULL);

@@ -21,7 +21,10 @@ int main(__attribute((unused)) int ac, char *av[])
 			break;
 
 		if (command[0] == '\0')
+		{
+			free(command);
 			continue;
+		}
 		argv = splitCommand(command, " \n");
 		if (argv == NULL)
 		{
@@ -41,6 +44,7 @@ int main(__attribute((unused)) int ac, char *av[])
 
 		free(argv);
 		free(command);
+		argv = NULL;
 
 	}
 	return (0);

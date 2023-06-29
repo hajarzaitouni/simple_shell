@@ -11,10 +11,11 @@ int _strlen(const char *s)
 {
 	int count = 0;
 
-	while (*s != '\0')
+	if (s == NULL)
+		return (0);
+	while (s[count] != '\0')
 	{
 		count++;
-		s++;
 	}
 
 	return (count);
@@ -30,7 +31,7 @@ int _strlen(const char *s)
 char *_strdup(const char *s)
 {
 	char *str;
-	int i = 0, length;
+	int i = 0, length = 0;
 
 	length = _strlen(s);
 
@@ -85,6 +86,7 @@ char *_strcat(char *dest, const char *src)
 
 	while (*str != '\0')
 		str++;
+
 	while (*src != '\0')
 	{
 		*str = *src;
